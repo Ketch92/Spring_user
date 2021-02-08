@@ -24,6 +24,7 @@ public class AppConfig {
         dataSource.setPassword("Qwest900");
         return dataSource;
     }
+    
     @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
