@@ -37,8 +37,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> listUsers() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery( "from User", User.class)
-                    .getResultList();
+            return session.createQuery("from User", User.class).getResultList();
         } catch (Exception e) {
             throw new RuntimeException("Can't get the users");
         }

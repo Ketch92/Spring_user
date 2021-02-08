@@ -1,8 +1,18 @@
 package core.model;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "Users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String name;
     private int age;
@@ -40,10 +50,19 @@ public class User {
         this.age = age;
     }
     
+    public Long getId() {
+        return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString() {
         return "User{"
-               + "email='" + email + '\''
+               + "id=" + id
+               + ", email='" + email + '\''
                + ", name='" + name + '\''
                + ", age=" + age
                + '}';

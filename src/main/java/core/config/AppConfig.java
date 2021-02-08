@@ -16,7 +16,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 })
 public class AppConfig {
     @Bean
-    public DataSource getDataSource(){
+    public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/cinema");
