@@ -2,9 +2,11 @@ package core.dao;
 
 import core.model.User;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -37,9 +39,11 @@ public class UserDaoImpl implements UserDao {
     }
     
     @Override
-    public User get(Long id) {
+    public Optional<User> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(User.class, id);
+            Query<User> userQuery = session.createQuery("from User u where u.id = :id", User.class);
+            userQuery.setParameter("id", id);
+            return userQuery.uniqueResultOptional();
         } catch (Exception e) {
             throw new RuntimeException("Couldn't get user with id=" + id);
         }

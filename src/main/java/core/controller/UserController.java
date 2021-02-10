@@ -24,7 +24,7 @@ public class UserController {
     
     @GetMapping("/{userId}")
     public UserResponseDto getUser(@PathVariable Long userId) {
-        return userMapperService.mapToDto(userService.get(userId));
+        return userMapperService.mapToDto(userService.get(userId).orElseThrow());
     }
     
     @GetMapping
