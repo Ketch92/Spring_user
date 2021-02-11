@@ -1,7 +1,8 @@
-package core.service;
+package core.service.impl;
 
 import core.dao.UserDao;
 import core.model.User;
+import core.service.UserService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) {
         userDao.add(user);
+    }
+    
+    @Override
+    public User get(Long id) {
+        return userDao.get(id).orElseThrow();
     }
     
     @Override
