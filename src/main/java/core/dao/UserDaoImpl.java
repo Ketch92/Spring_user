@@ -2,6 +2,7 @@ package core.dao;
 
 import core.model.User;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,9 +38,9 @@ public class UserDaoImpl implements UserDao {
     }
     
     @Override
-    public User get(Long id) {
+    public Optional<User> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(User.class, id);
+            return Optional.ofNullable(session.get(User.class, id));
         } catch (Exception e) {
             throw new RuntimeException("Couldn't get user with id=" + id);
         }
