@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
     private final UserService userService;
-    private final UserMapper userMapperService;
+    private final UserMapper userMapper;
     
     public UserController(UserService userService, UserMapper userMapperService) {
         this.userService = userService;
-        this.userMapperService = userMapperService;
+        this.userMapper = userMapperService;
     }
     
     @GetMapping("/{userId}")
     public UserResponseDto getUser(@PathVariable Long userId) {
-        return userMapperService.mapToDto(userService.get(userId).orElseThrow());
+        return userMapper.mapToDto(userService.get(userId));
     }
     
     @GetMapping
     public List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
-                .map(userMapperService::mapToDto)
+                .map(userMapper::mapToDto)
                 .collect(Collectors.toList());
     }
     
